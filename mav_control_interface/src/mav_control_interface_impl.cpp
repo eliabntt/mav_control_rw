@@ -37,8 +37,8 @@ MavControlInterfaceImpl::MavControlInterfaceImpl(ros::NodeHandle& nh, ros::NodeH
 {
   ros::NodeHandle interface_nh(private_nh, "control_interface");
 
-  odometry_watchdog_ = nh_.createTimer(ros::Duration(kOdometryWatchdogTimeout),
-                                       &MavControlInterfaceImpl::OdometryWatchdogCallback, this, false, true);
+//  odometry_watchdog_ = nh_.createTimer(ros::Duration(kOdometryWatchdogTimeout),
+//                                       &MavControlInterfaceImpl::OdometryWatchdogCallback, this, false, true);
 
   command_trajectory_subscriber_ = nh_.subscribe(mav_msgs::default_topics::COMMAND_POSE, 1,
                                                  &MavControlInterfaceImpl::CommandPoseCallback, this);
@@ -130,7 +130,7 @@ void MavControlInterfaceImpl::OdometryCallback(const nav_msgs::OdometryConstPtr&
   mav_msgs::EigenOdometry odometry;
   mav_msgs::eigenOdometryFromMsg(*odometry_msg, &odometry);
   // Stamp odometry upon reception to be robust against timestamps "in the future".
-  odometry.timestamp_ns = ros::Time::now().toNSec();
+//  odometry.timestamp_ns = ros::Time::now().toNSec();
   state_machine_->process_event(state_machine::OdometryUpdate(odometry));
 }
 

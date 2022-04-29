@@ -118,6 +118,8 @@ void PIDAttitudeController::InitializeParams()
   angular_acc_to_rotor_velocities_ = allocation_matrix.transpose()
       * (allocation_matrix * allocation_matrix.transpose()).inverse() * K.inverse() * I;
 
+	std::cout << angular_acc_to_rotor_velocities_ << std::endl;
+
   attitude_thrust_reference_.setZero();
 
   initialized_params_ = true;

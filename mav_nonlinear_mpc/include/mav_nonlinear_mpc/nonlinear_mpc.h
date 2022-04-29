@@ -153,6 +153,7 @@ class NonlinearModelPredictiveControl
   // sampling time parameters
   double sampling_time_;
   double prediction_sampling_time_;
+  double dummy_roll_ref, dummy_pitch_ref;
 
   // system model parameters
   double mass_;
