@@ -299,13 +299,13 @@ namespace mav_control {
 
 			disturbance_observer_.getEstimatedState(&KF_estimated_state);
 
-			if (false) {
+			if (enable_offset_free_) {
 				estimated_disturbances = KF_estimated_state.segment(12, kDisturbanceSize);
 			} else {
 				estimated_disturbances.setZero(kDisturbanceSize);
 			}
 
-			if (false) {
+			if (enable_integrator_) {
 				Eigen::Vector3d position_error = position_ref_.front() - odometry_.position_W;
 				if (position_error.norm() < antiwindup_ball_) {
 					position_error_integration_ += position_error * sampling_time_;
@@ -533,7 +533,7 @@ namespace mav_control {
 				pnt.velocity_W = state_.block(i, 0, 1, 3).transpose();
 
 				tf::Quaternion tf_orientation;
-				tf_orientation.setRPY(dummy_roll_ref, dummy_pitch_ref, yaw_ref_.at(0));
+				tf_orientation.setRPY(state_(i,3), state_(i,4), yaw_ref_.at(i));
 				pnt.orientation_W_B.x() = tf_orientation.x();
 				pnt.orientation_W_B.y() = tf_orientation.y();
 				pnt.orientation_W_B.z() = tf_orientation.z();

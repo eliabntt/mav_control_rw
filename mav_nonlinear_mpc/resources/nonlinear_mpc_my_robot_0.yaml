@@ -19,27 +19,27 @@ pitch_gain: 0.78
 linear_drag_coefficients: [0.01, 0.01, 0]
 
 # dynamic config default values:
-q_x : 80
-q_y : 80
-q_z : 120
+q_x : 400
+q_y : 400
+q_z : 500
 
-q_vx : 80
-q_vy : 80
-q_vz : 80
+q_vx : 50
+q_vy : 50
+q_vz : 200
 
 q_roll : 20
 q_pitch: 20
 
-r_roll  : 30
-r_pitch : 30
-r_thrust : 1
+r_roll  : 10
+r_pitch : 10
+r_thrust : 30
 
-roll_max: deg(25.0)
-pitch_max: deg(25.0)
+roll_max: 0.4
+pitch_max: 0.4
 thrust_min: 5
-thrust_max: 20
+thrust_max: 17
 
-K_yaw: 3
+K_yaw: 2
 
 Ki_xy: 0.2
 Ki_z: 0.3
@@ -47,9 +47,9 @@ position_error_integration_limit: 2
 antiwindup_ball: 0.4
 
 enable_offset_free : false
-enable_integrator : true
+enable_integrator : false
 
 sampling_time: 0.02    #IMPORTANT: set this equal to the rate of odometry msg
-prediction_sampling_time: 0.1
+prediction_sampling_time: 0.05
 
-yaw_rate_max: 4.0
+yaw_rate_max: 2.0

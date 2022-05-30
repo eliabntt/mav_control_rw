@@ -37,8 +37,8 @@ MavControlInterfaceImpl::MavControlInterfaceImpl(ros::NodeHandle& nh, ros::NodeH
 {
   ros::NodeHandle interface_nh(private_nh, "control_interface");
 
-//  odometry_watchdog_ = nh_.createTimer(ros::Duration(kOdometryWatchdogTimeout),
-//                                       &MavControlInterfaceImpl::OdometryWatchdogCallback, this, false, true);
+  odometry_watchdog_ = nh_.createTimer(ros::Duration(kOdometryWatchdogTimeout),
+                                       &MavControlInterfaceImpl::OdometryWatchdogCallback, this, false, true);
 
   command_trajectory_subscriber_ = nh_.subscribe(mav_msgs::default_topics::COMMAND_POSE, 1,
                                                  &MavControlInterfaceImpl::CommandPoseCallback, this);
@@ -46,7 +46,10 @@ MavControlInterfaceImpl::MavControlInterfaceImpl(ros::NodeHandle& nh, ros::NodeH
   command_trajectory_array_subscriber_ = nh_.subscribe(
       mav_msgs::default_topics::COMMAND_TRAJECTORY, 1,
       &MavControlInterfaceImpl::CommandTrajectoryCallback, this);
-
+	ROS_INFO_STREAM(mav_msgs::default_topics::ODOMETRY);
+	ROS_INFO_STREAM(mav_msgs::default_topics::ODOMETRY);
+	ROS_INFO_STREAM(mav_msgs::default_topics::ODOMETRY);
+	ROS_INFO_STREAM(mav_msgs::default_topics::ODOMETRY);
   odometry_subscriber_ = nh_.subscribe(mav_msgs::default_topics::ODOMETRY, 1,
                                        &MavControlInterfaceImpl::OdometryCallback, this,
                                        ros::TransportHints().tcpNoDelay());
