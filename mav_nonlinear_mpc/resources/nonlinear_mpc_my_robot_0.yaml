@@ -52,4 +52,4 @@ enable_integrator : false
 sampling_time: 0.017    #IMPORTANT: set this equal to the rate of odometry msg
 prediction_sampling_time: 0.1
 
-yaw_rate_max: 1
+yaw_rate_max: 0.8
