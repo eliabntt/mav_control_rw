@@ -384,12 +384,12 @@ namespace mav_control {
 			} else {
 				dummy_roll_ref = roll_ref;
 				// limit dummy_roll_ref between -0.1 and 0.1
-				dummy_roll_ref = dummy_roll_ref > 0.1 ? 0.1 : dummy_roll_ref;
-				dummy_roll_ref = dummy_roll_ref < -0.1 ? -0.1 : dummy_roll_ref;
+				dummy_roll_ref = dummy_roll_ref > roll_limit_ ? roll_limit_ : dummy_roll_ref;
+				dummy_roll_ref = dummy_roll_ref < -roll_limit_ ? -roll_limit_ : dummy_roll_ref;
 				dummy_pitch_ref = pitch_ref;
 				// limit dummy_pitch_ref between -0.1 and 0.1
-				dummy_pitch_ref = dummy_pitch_ref > 0.1 ? 0.1 : dummy_pitch_ref;
-				dummy_pitch_ref = dummy_pitch_ref < -0.1 ? -0.1 : dummy_pitch_ref;
+				dummy_pitch_ref = dummy_pitch_ref > pitch_limit_ ? pitch_limit_ : dummy_pitch_ref;
+				dummy_pitch_ref = dummy_pitch_ref < -pitch_limit_ ? -pitch_limit_ : dummy_pitch_ref;
 			}
 			command_roll_pitch_yaw_thrust_ << roll_ref, pitch_ref, yaw_ref_.front(), thrust_ref;
 
@@ -533,7 +533,7 @@ namespace mav_control {
 				pnt.velocity_W = state_.block(i, 0, 1, 3).transpose();
 
 				tf::Quaternion tf_orientation;
-				tf_orientation.setRPY(state_(i,3), state_(i,4), yaw_ref_.at(i));
+				tf_orientation.setRPY(dummy_roll_ref, dummy_pitch_ref, yaw_ref_.at(i));
 				pnt.orientation_W_B.x() = tf_orientation.x();
 				pnt.orientation_W_B.y() = tf_orientation.y();
 				pnt.orientation_W_B.z() = tf_orientation.z();
