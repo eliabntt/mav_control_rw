@@ -19,8 +19,8 @@ pitch_gain: 0.78
 linear_drag_coefficients: [0.01, 0.01, 0]
 
 # dynamic config default values:
-q_x : 400
-q_y : 400
+q_x : 300
+q_y : 300
 q_z : 500
 
 q_vx : 10
@@ -52,4 +52,4 @@ enable_integrator : false
 sampling_time: 0.017    #IMPORTANT: set this equal to the rate of odometry msg
 prediction_sampling_time: 0.1
 
-yaw_rate_max: 0.8
+yaw_rate_max: 3
